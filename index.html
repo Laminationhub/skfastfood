@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Teko:wght@700&display=swap" rel="stylesheet">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3062666273870227"
+     crossorigin="anonymous"></script>
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -212,7 +216,7 @@
 
     </main>
     
-    <!-- Footer Section -->
+ <!-- Footer Section -->
     <footer id="contact" class="header-bg border-t border-gray-700 mt-12 py-8">
         <div class="container mx-auto text-center text-gray-400">
             <p class="text-2xl font-bold text-orange-500 logo-text">SK FAST FOOD</p>
@@ -223,57 +227,4 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // JavaScript for Live Search Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            const menuCategories = document.querySelectorAll('.menu-category');
-            const noResultsMessage = document.getElementById('noResults');
-
-            searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase().trim();
-                let totalVisibleItems = 0;
-
-                menuCategories.forEach(category => {
-                    const menuItems = category.querySelectorAll('.menu-item');
-                    let visibleItemsInCategory = 0;
-
-                    // Search within the category. The first span contains the item name.
-                    menuItems.forEach(item => {
-                        const itemNameElement = item.querySelector('span');
-                        if (itemNameElement) {
-                            const itemName = itemNameElement.textContent.toLowerCase();
-                            if (itemName.includes(searchTerm)) {
-                                item.style.display = 'flex';
-                                visibleItemsInCategory++;
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        }
-                    });
-
-                    // Hide or show the whole category card based on if items were found
-                    if (visibleItemsInCategory > 0) {
-                        category.style.display = 'block';
-                        totalVisibleItems += visibleItemsInCategory;
-                    } else {
-                        category.style.display = 'none';
-                    }
-                });
-
-                // Show or hide the "No Results" message
-                if (totalVisibleItems === 0 && searchTerm !== '') {
-                    noResultsMessage.style.display = 'block';
-                } else {
-                    noResultsMessage.style.display = 'none';
-                }
-            });
-        });
-    </script>
-
-</body>
-</html>
-
-
 
