@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Teko:wght@700&display=swap" rel="stylesheet">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3062666273870227"
+     crossorigin="anonymous"></script>
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -39,16 +43,29 @@
             box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.5); /* Orange glow */
             border-color: #f97316;
         }
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #f97316;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
 
     <!-- Header Section -->
     <header class="header-bg py-4 px-4 shadow-lg sticky top-0 z-10">
-        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
             <a href="#" class="block">
                 <!-- Changed logo source to the raw GitHub link -->
-                <img src="https://raw.githubusercontent.com/abhigsm4/skfastfood/main/sks.png" alt="SK Fast Food Logo" class="h-20 w-auto">
+                <img src="https://raw.githubusercontent.com/abhigsm4/skfastfood/main/sks.png" alt="SK Fast Food Logo" class="h-16 w-auto">
             </a>
              <nav class="mt-4 sm:mt-0">
                 <a href="#menu" class="text-lg text-gray-300 hover:text-orange-500 transition-colors duration-300 px-4 py-2 rounded-md">Menu</a>
@@ -62,12 +79,40 @@
     <main class="container mx-auto p-4 sm:p-8" id="menu">
         
         <!-- Welcome Banner -->
-        <div class="relative rounded-xl overflow-hidden mb-12 shadow-2xl">
-            <img src="https://placehold.co/1200x400/1a1a1a/f97316?text=Delicious+Food+Await!" alt="Delicious Fast Food" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4">
+        <div class="relative rounded-xl overflow-hidden mb-12 shadow-2xl h-80">
+            <img src="https://raw.githubusercontent.com/Laminationhub/skfastfood/a578926aca442916995bcdb63741ec7a029e944d/Gemini_Generated_Image_b5xtmjb5xtmjb5xt.png" alt="Delicious Fast Food" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
                 <h2 class="text-3xl md:text-5xl font-extrabold text-white text-center leading-tight">Taste the Speed, Feel the Flavor!</h2>
             </div>
         </div>
+
+        <!-- Gemini API Feature: Chef's Special Combo -->
+        <section id="chef-special" class="mb-12">
+            <div class="text-center">
+                <h2 class="text-4xl font-extrabold text-center mb-4 text-orange-500">Chef's Special</h2>
+                <p class="text-lg text-gray-400 mb-6 max-w-2xl mx-auto">Can't decide what to order? Let our AI chef create a delicious combo for you!</p>
+                <button id="generateComboBtn" class="bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg">
+                    ✨ Generate Today's Special
+                </button>
+            </div>
+            <div id="comboResult" class="mt-8 min-h-[150px] flex items-center justify-center">
+                <!-- Loading spinner -->
+                <div id="loadingSpinner" class="hidden loader"></div>
+                <!-- Combo content will be injected here -->
+                <div id="comboContent" class="hidden w-full max-w-2xl mx-auto menu-card rounded-xl p-6 text-center">
+                    <h3 id="comboName" class="text-3xl font-bold text-orange-500 mb-2"></h3>
+                    <p id="comboDescription" class="text-gray-300 mb-4"></p>
+                    <div id="comboItems" class="flex justify-center gap-4 flex-wrap mb-4"></div>
+                    <div class="text-2xl font-bold price">
+                        Special Price: <span id="comboPrice"></span>
+                    </div>
+                </div>
+                 <!-- Error Message -->
+                <div id="errorMessage" class="hidden text-red-400">
+                    Sorry, the chef is busy right now. Please try again in a moment!
+                </div>
+            </div>
+        </section>
 
         <!-- Search Bar Section -->
         <div class="mb-10">
@@ -209,72 +254,189 @@
                  </div>
              </div>
         </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="my-16 text-center">
+            <h2 class="text-4xl font-extrabold text-center mb-8 text-orange-500">Contact Us</h2>
+            <p class="text-lg text-gray-400 mb-2">SK Fast Food, In Front of Hanuman Gadhi, Sultanpur Road, Kurebhar</p>
+            <p class="text-lg text-gray-400">Phone: +91 7355578397</p>
+        </section>
 
     </main>
     
-    <!-- Footer Section -->
-    <footer id="contact" class="header-bg border-t border-gray-700 mt-12 py-8">
-        <div class="container mx-auto text-center text-gray-400">
-            <p class="text-2xl font-bold text-orange-500 logo-text">SK FAST FOOD</p>
-            <p class="mt-2">Serving deliciousness, one plate at a time.</p>
-            <p class="mt-1">Visit us for a quick & tasty meal!</p>
-            <div class="mt-4">
-                <p>&copy; 2025 SK Fast Food. All Rights Reserved. Powered by LaminationHub.in.</p>
-            </div>
-        </div>
+    <footer class="bg-gray-800 py-4 text-center">
+        <p class="text-gray-500">&copy; 2024 SK Fast Food. All Rights Reserved. Powered By <a href="http://LaminationHub.in" target="_blank" class="text-gray-400 hover:text-orange-500 transition-colors">LaminationHub.in</a></p>
     </footer>
 
     <script>
-        // JavaScript for Live Search Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            const menuCategories = document.querySelectorAll('.menu-category');
-            const noResultsMessage = document.getElementById('noResults');
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const menuGrid = document.getElementById('menuGrid');
+        const menuCategories = menuGrid.querySelectorAll('.menu-category');
+        const noResults = document.getElementById('noResults');
 
-            searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase().trim();
-                let totalVisibleItems = 0;
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let categoriesVisible = 0;
 
-                menuCategories.forEach(category => {
-                    const menuItems = category.querySelectorAll('.menu-item');
-                    let visibleItemsInCategory = 0;
+            menuCategories.forEach(category => {
+                const menuItems = category.querySelectorAll('.menu-item');
+                let itemsVisible = 0;
 
-                    // Search within the category. The first span contains the item name.
-                    menuItems.forEach(item => {
-                        const itemNameElement = item.querySelector('span');
-                        if (itemNameElement) {
-                            const itemName = itemNameElement.textContent.toLowerCase();
-                            if (itemName.includes(searchTerm)) {
-                                item.style.display = 'flex';
-                                visibleItemsInCategory++;
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        }
-                    });
-
-                    // Hide or show the whole category card based on if items were found
-                    if (visibleItemsInCategory > 0) {
-                        category.style.display = 'block';
-                        totalVisibleItems += visibleItemsInCategory;
+                menuItems.forEach(item => {
+                    const itemName = item.querySelector('span').textContent.toLowerCase();
+                    if (itemName.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                        itemsVisible++;
                     } else {
-                        category.style.display = 'none';
+                        item.style.display = 'none';
                     }
                 });
 
-                // Show or hide the "No Results" message
-                if (totalVisibleItems === 0 && searchTerm !== '') {
-                    noResultsMessage.style.display = 'block';
+                if (itemsVisible > 0) {
+                    category.style.display = 'block';
+                    categoriesVisible++;
                 } else {
-                    noResultsMessage.style.display = 'none';
+                    category.style.display = 'none';
                 }
             });
-        });
-    </script>
 
+            if (categoriesVisible > 0) {
+                noResults.classList.add('hidden');
+            } else {
+                noResults.classList.remove('hidden');
+            }
+        });
+
+        // Gemini API Functionality
+        const generateComboBtn = document.getElementById('generateComboBtn');
+        const comboResultDiv = document.getElementById('comboResult');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const comboContent = document.getElementById('comboContent');
+        const errorMessage = document.getElementById('errorMessage');
+
+        generateComboBtn.addEventListener('click', generateCombo);
+
+        async function generateCombo() {
+            loadingSpinner.classList.remove('hidden');
+            comboContent.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            generateComboBtn.disabled = true;
+
+            // 1. Extract menu data from the DOM
+            let menuText = "";
+            document.querySelectorAll('.menu-category').forEach(category => {
+                const categoryName = category.querySelector('h3').innerText;
+                menuText += `\nCategory: ${categoryName}\n`;
+                category.querySelectorAll('.menu-item').forEach(item => {
+                    const itemName = item.querySelector('span').innerText;
+                    const prices = Array.from(item.querySelectorAll('.price')).map(p => p.innerText).join(' / ');
+                    menuText += `- ${itemName}: ${prices}\n`;
+                });
+            });
+
+            // 2. Setup Gemini API Call
+            const apiKey = ""; // API key will be provided by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `You are an expert chef and marketing assistant for a local Indian fast food restaurant called 'SK Fast Food'. Your task is to create an exciting 'Combo of the Day'.`;
+            
+            const userQuery = `Based on the following menu, create a combo of 2 or 3 items that complement each other well.
+            - Ensure the combo provides a satisfying meal (e.g., a main dish, a side, and maybe a drink if available, or two main dishes).
+            - Do not include Water or Cold Drink in the combo.
+            - Provide a response in JSON format.
+
+            MENU:
+            ${menuText}`;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: userQuery }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "comboName": { "type": "STRING", "description": "A catchy and creative name for the combo." },
+                            "description": { "type": "STRING", "description": "A short, mouth-watering description (15-20 words)." },
+                            "items": { 
+                                "type": "ARRAY", 
+                                "description": "An array of 2-3 item names exactly as they appear on the menu.",
+                                "items": { "type": "STRING" }
+                            },
+                            "totalPrice": { "type": "NUMBER", "description": "A slightly discounted total price for the combo (e.g., 10-15% off the sum)." }
+                        },
+                        required: ["comboName", "description", "items", "totalPrice"]
+                    }
+                }
+            };
+
+            try {
+                // 3. Make the API request
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                const candidate = result.candidates?.[0];
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const comboData = JSON.parse(candidate.content.parts[0].text);
+                    displayCombo(comboData);
+                } else {
+                    throw new Error("Invalid response structure from API.");
+                }
+
+            } catch (error) {
+                console.error("Error fetching combo:", error);
+                errorMessage.classList.remove('hidden');
+            } finally {
+                loadingSpinner.classList.add('hidden');
+                generateComboBtn.disabled = false;
+            }
+        }
+
+        function displayCombo(data) {
+            document.getElementById('comboName').textContent = data.comboName;
+            document.getElementById('comboDescription').textContent = data.description;
+            document.getElementById('comboPrice').textContent = `₹${data.totalPrice}`;
+            
+            const itemsContainer = document.getElementById('comboItems');
+            itemsContainer.innerHTML = ''; // Clear previous items
+            data.items.forEach(item => {
+                const itemChip = document.createElement('span');
+                itemChip.className = 'bg-gray-700 text-orange-400 text-sm font-semibold px-3 py-1 rounded-full';
+                itemChip.textContent = item;
+                itemsContainer.appendChild(itemChip);
+            });
+
+            comboContent.classList.remove('hidden');
+        }
+
+    </script>
 </body>
 </html>
-<meta name="e47d514f40bc1589f9f2c37cc61f680deb523212" content="e47d514f40bc1589f9f2c37cc61f680deb523212" />
+
+
+
+
+
+
+
+
+
+
+
 
 
 
